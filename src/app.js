@@ -96,9 +96,9 @@ app.get("/", (req, res) => {
 
 // Frontend Fallback (for React/Vue/SPA)
 // Use a regex route to avoid path-to-regexp parsing issues with the literal "*" string
-// app.get(/.*/, (req, res) => {
-//   res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
-// });
+ app.get(/.*/, (req, res) => {
+   res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+ });
 
 // // Handle Invalid API Routes
 // app.all("*", (req, res, next) => {
