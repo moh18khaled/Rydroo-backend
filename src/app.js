@@ -31,7 +31,7 @@ app.use(cookieParser());
 const allowedOrigins = [
   "http://localhost:5000",
   "http://localhost:5173", // Local development
-  "https://rydroo.onrender.com/",
+  "https://rydroo.onrender.com",
 ];
 
 app.use(
