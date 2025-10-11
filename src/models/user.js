@@ -50,6 +50,26 @@ const userSchema = new mongoose.Schema(
         message: "Please provide a valid email address.",
       },
     },
+    role: {
+      type: String,
+      enum: ["user", "driver"],
+      default: "user",
+    },
+    profilePicture: {
+      url: {
+        type: String,
+        maxlength: [
+          255,
+          "Profile picture URL should be less than 256 characters.",
+        ],
+        default:
+          "https://res.cloudinary.com/dknokwido/image/upload/v1737968225/profilePicture/tdnvzliie0wty93ihodf.jpg",
+      },
+      public_id: {
+        type: String,
+        default: "profilePicture/tdnvzliie0wty93ihodf",
+      },
+    },
     googleId: {
       type: String,
       unique: true,
@@ -67,7 +87,7 @@ const userSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
- 
+
 // Pre-save hook to automatically set the age group and hash the password
 userSchema.pre("save", async function (next) {
   try {

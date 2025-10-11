@@ -24,4 +24,45 @@ router.post("/resend-otp", validateRequiredFields("resendOtp"), asyncHandler(use
 
 router.post("/verify-otp", asyncHandler(userController.verifyOtp));
 
+router
+  .route("/account")
+  .get(verifyToken, asyncHandler(userController.getUserAccount))
+  .patch(verifyToken, asyncHandler(userController.updateAccount))
+  .delete(verifyToken, asyncHandler(userController.deleteAccount));
+
+router.patch(
+  "/account/password",
+  verifyToken,
+  asyncHandler(userController.changePassword)
+);
+
+router.post(
+  "/reset-password",
+  asyncHandler(userController.requestPasswordReset)
+);
+router.post(
+  "/reset-password/confirm",
+  asyncHandler(userController.confirmPasswordReset)
+);
+
+router.post(
+  "/contact",
+  validateRequiredFields("emailContent"),
+  asyncHandler(userController.contactSupport)
+);
+
+// Get all notifications
+router.get(
+  "/notifications",
+  verifyToken,
+  asyncHandler(userController.getNotifications)
+);
+
+router.patch(
+  "/notifications/:notificationId",
+  verifyToken,
+  asyncHandler(userController.markAsRead)
+);
+
+
 export default router;

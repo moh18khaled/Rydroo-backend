@@ -90,7 +90,7 @@ app.use("/user", userRoutes);
 // Default API Home Route
 app.get("/", (req, res) => {
   res.send("Welcome to the iSharee Backend!");
-});
+}); 
 
 // Frontend Fallback (for React/Vue/SPA)
 // Use a regex route to avoid path-to-regexp parsing issues with the literal "*" string
